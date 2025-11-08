@@ -1,4 +1,4 @@
-import mongoose, { Schema } from 'mongoose';
+import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs'
 
 const OtpSchema=new mongoose.Schema({
@@ -21,17 +21,19 @@ const UserSchemaDefinitions=({
         type:Boolean,
         default:false
     },
-    failedOTPAttempts:{
+    failedLoginAttempts:{
         type:Number,
         default:0,
     },
     lockUntil:{
         type:Date,
     },
-    refreshToken:[{
-        token:String,
-        createdAt:Date,
-    }],
+    token:{
+        type:String,
+    },
+    tokenExpiresIn:{
+        type:Date,
+    },
     otp:OtpSchema,
 });
 
@@ -47,7 +49,7 @@ UserSchema.pre("save",async function(next){
 
 
 UserSchema.methods.comparePassword=async function(pass:string){
-    return bcrypt.compare(pass,this.password);
+    return await bcrypt.compare(pass,this.password);
 }   
 
 export default mongoose.model<any>("User",UserSchema);
