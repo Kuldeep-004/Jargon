@@ -13,5 +13,4 @@ export const authMiddleware=(req:any,res:Response,next:any)=>{
     }catch(err){
         return res.status(500).json({success:false,msg:"User auth internal error"});
     }
-
 }

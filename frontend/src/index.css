@@ -1,1 +1,14 @@
+/* Single, slightly robotic font for the whole app. Rajdhani is techy yet readable. */
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
+
+@layer base {
+	html, body, #root, * {
+		font-family: 'Rajdhani', system-ui, -apple-system, "Segoe UI", Roboto,
+			"Helvetica Neue", Arial, sans-serif;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+
+	
+}
